@@ -71,7 +71,7 @@
 
   /* ================= HERO (blue band, matches logo) ================= */
   .hero{
-    position:relative; padding:64px 0 76px; overflow:hidden; color:#fff;
+    position:relative; padding:110px 0 120px; overflow:hidden; color:#fff;
     background:linear-gradient(135deg, var(--azul-claro) 0%, var(--azul) 45%, var(--azul-fundo) 100%);
   }
   .hero::before{
@@ -79,13 +79,13 @@
     background:linear-gradient(120deg, rgba(255,255,255,0.35) 0%, rgba(255,255,255,0) 30%, rgba(255,255,255,0) 70%, rgba(255,255,255,0.18) 100%);
     pointer-events:none;
   }
-  .hero-grid{position:relative; display:grid; grid-template-columns:1fr 0.92fr; gap:64px; align-items:center;}
-  .rating-line{display:flex; align-items:center; gap:10px; font-size:0.92rem; font-weight:700; color:#fff; margin-bottom:24px;}
+  .hero-grid{position:relative; z-index:2; max-width:880px; margin:0 auto; text-align:center;}
+  .rating-line{display:flex; align-items:center; justify-content:center; gap:10px; font-size:1rem; font-weight:700; color:#fff; margin-bottom:26px;}
   .rating-line .stars{color:var(--amarelo); letter-spacing:1px;}
-  .hero h1{font-size:clamp(2.2rem, 4.2vw, 3.3rem); line-height:1.12; font-weight:700; color:#fff; margin-bottom:20px;}
+  .hero h1{font-size:clamp(2.6rem, 6vw, 4.6rem); line-height:1.1; font-weight:700; color:#fff; margin-bottom:26px;}
   .hero h1 em{color:var(--amarelo); font-style:normal;}
-  .hero p.lead{font-size:1.08rem; color:rgba(255,255,255,0.92); max-width:440px; line-height:1.6; margin-bottom:32px;}
-  .hero-ctas{display:flex; gap:14px; flex-wrap:wrap;}
+  .hero p.lead{font-size:clamp(1.1rem, 1.6vw, 1.35rem); color:rgba(255,255,255,0.92); max-width:640px; line-height:1.6; margin:0 auto 36px;}
+  .hero-ctas{display:flex; gap:14px; flex-wrap:wrap; justify-content:center;}
   .btn-primary, .btn-secondary{padding:14px 26px; border-radius:999px; font-weight:800; font-size:0.95rem; display:inline-flex; align-items:center; gap:8px; transition:transform 180ms var(--ease-out), box-shadow 180ms var(--ease-out), background 180ms var(--ease-out);}
   .btn-primary{background:var(--vermelho); color:#fff;}
   .btn-secondary{background:rgba(255,255,255,0.12); color:#fff; border:1.5px solid rgba(255,255,255,0.6);}
@@ -96,11 +96,7 @@
   .btn-primary .arrow, .btn-secondary .arrow{transition:transform 180ms var(--ease-out);}
   .btn-primary:hover .arrow, .btn-secondary:hover .arrow{transform:translateX(4px);}
 
-  /* --- dog illustration card floats on white, over the blue hero --- */
-  .hero-art{position:relative; border-radius:26px; background:linear-gradient(180deg, #EAF6FD 0%, var(--paper) 62%); box-shadow:0 24px 50px rgba(11,78,117,0.28); overflow:hidden; display:flex; align-items:center; justify-content:center; height:400px;}
-  .dog-scene{position:relative; z-index:2; width:80%; max-width:320px;}
-
-  /* ---- drifting clouds, reused on the hero card and the welcome screen ---- */
+  /* ---- drifting clouds across the blue hero ---- */
   .sky{position:absolute; inset:0; overflow:hidden; z-index:0; pointer-events:none;}
   .cloud-track{position:absolute; left:0; display:flex; align-items:center; gap:90px; width:max-content; animation-name:driftClouds; animation-timing-function:linear; animation-iteration-count:infinite;}
   @keyframes driftClouds{from{transform:translateX(0);}to{transform:translateX(-50%);}}
@@ -108,13 +104,13 @@
   .cloud::before, .cloud::after{content:''; position:absolute; background:inherit; border-radius:50%;}
   .cloud::before{width:58%; height:150%; top:-62%; left:6%;}
   .cloud::after{width:42%; height:120%; top:-55%; right:8%;}
-  .cloud-far{width:52px; height:16px; background:rgba(255,255,255,0.55);}
-  .cloud-mid{width:74px; height:22px; background:rgba(255,255,255,0.72);}
-  .cloud-near{width:96px; height:28px; background:rgba(255,255,255,0.88);}
-  .track-far{top:10%; animation-duration:34s;}
-  .track-mid{top:24%; animation-duration:24s;}
-  .track-near{top:5%; animation-duration:17s;}
-  @media (max-width:860px){ .track-far{top:6%;} .track-mid{top:16%;} .track-near{top:2%;} }
+  .cloud-far{width:80px; height:24px; background:rgba(255,255,255,0.5);}
+  .cloud-mid{width:110px; height:32px; background:rgba(255,255,255,0.68);}
+  .cloud-near{width:140px; height:40px; background:rgba(255,255,255,0.85);}
+  .track-far{top:14%; animation-duration:40s;}
+  .track-mid{top:34%; animation-duration:28s;}
+  .track-near{top:58%; animation-duration:20s;}
+  @media (max-width:860px){ .track-far{top:8%;} .track-mid{top:22%;} .track-near{top:40%;} }
 
   /* ================= WELCOME SPLASH ================= */
   .splash{
@@ -168,29 +164,13 @@
     .splash{transition:opacity 200ms linear;}
     .splash-logo,.splash h1,.splash p,.splash-enter,.splash-hint{animation:none !important; opacity:1; transform:none;}
   }
-  :root{ --ease-run: cubic-bezier(0.45,0,0.55,1); }
-  .ground-shadow{fill:rgba(18,42,61,0.16); filter:blur(3px); transform-box:fill-box; transform-origin:50% 50%; animation:shadowPulse 8s var(--ease-run) infinite;}
-  @keyframes shadowPulse{0%,40%{transform:scaleX(1);opacity:.16;}20%{transform:scaleX(.85);opacity:.11;}48%,90%{transform:scaleX(1.08);opacity:.18;}100%{transform:scaleX(1);opacity:.16;}}
-  .dog{transform-box:fill-box; transform-origin:50% 100%; animation:dogBounce 8s var(--ease-run) infinite;}
-  @keyframes dogBounce{0%,4%{transform:translateY(0);}8%{transform:translateY(-14px);}12%{transform:translateY(0);}16%{transform:translateY(-14px);}20%{transform:translateY(0);}24%{transform:translateY(-14px);}28%{transform:translateY(0);}32%{transform:translateY(-14px);}36%,40%{transform:translateY(0);}48%,90%{transform:translateY(10px);}96%,100%{transform:translateY(0);}}
-  .tail{fill:#B97A45; transform-box:fill-box; transform-origin:85% 90%; animation:tailWag .55s ease-in-out infinite;}
-  @keyframes tailWag{0%,100%{transform:rotate(-8deg);}50%{transform:rotate(18deg);}}
-  .leg{transform-box:fill-box; transform-origin:50% 4%;}
-  .leg-back{fill:#C98A4E; animation:legBackCycle 8s var(--ease-run) infinite;}
-  @keyframes legBackCycle{0%,4%{transform:rotate(0deg);}8%{transform:rotate(38deg);}12%{transform:rotate(-4deg);}16%{transform:rotate(38deg);}20%{transform:rotate(-4deg);}24%{transform:rotate(38deg);}28%{transform:rotate(-4deg);}32%{transform:rotate(38deg);}36%,40%{transform:rotate(0deg);}46%,90%{transform:rotate(58deg);}96%,100%{transform:rotate(0deg);}}
-  .leg-front{fill:#C98A4E; animation:legFrontCycle 8s var(--ease-run) infinite;}
-  @keyframes legFrontCycle{0%,4%{transform:rotate(0deg);}8%{transform:rotate(-4deg);}12%{transform:rotate(38deg);}16%{transform:rotate(-4deg);}20%{transform:rotate(38deg);}24%{transform:rotate(-4deg);}28%{transform:rotate(38deg);}32%{transform:rotate(-4deg);}36%,40%{transform:rotate(0deg);}45%{transform:rotate(35deg);}50%{transform:rotate(-92deg);}56%{transform:rotate(35deg);}64%{transform:rotate(-92deg);}70%{transform:rotate(35deg);}90%{transform:rotate(35deg);}96%,100%{transform:rotate(0deg);}}
-  .head-group{transform-box:fill-box; transform-origin:6% 55%; animation:headCycle 8s var(--ease-run) infinite;}
-  @keyframes headCycle{0%,4%{transform:translateY(0) rotate(0deg);}8%{transform:translateY(-4px) rotate(-3deg);}16%{transform:translateY(-4px) rotate(-3deg);}24%{transform:translateY(-4px) rotate(-3deg);}32%{transform:translateY(-4px) rotate(-3deg);}36%,40%{transform:translateY(0) rotate(0deg);}46%{transform:translateY(2px) rotate(2deg);}50%{transform:translateY(4px) rotate(14deg);}56%{transform:translateY(2px) rotate(2deg);}64%{transform:translateY(4px) rotate(14deg);}70%,90%{transform:translateY(2px) rotate(2deg);}96%,100%{transform:translateY(0) rotate(0deg);}}
-  .tongue{fill:#FF8FA3; opacity:0; transform-box:fill-box; transform-origin:50% 0%; animation:tongueFlick 8s var(--ease-run) infinite;}
-  @keyframes tongueFlick{0%,47%{opacity:0;transform:scaleY(.4);}50%{opacity:1;transform:scaleY(1);}53%,61%{opacity:0;transform:scaleY(.4);}64%{opacity:1;transform:scaleY(1);}68%,100%{opacity:0;transform:scaleY(.4);}}
-  @media (prefers-reduced-motion: reduce){
-    .dog,.leg-back,.leg-front,.head-group,.tail,.ground-shadow,.tongue{animation:none !important;}
-    .leg-front{transform:rotate(35deg);} .head-group{transform:translateY(2px) rotate(2deg);} .dog{transform:translateY(10px);}
-    .tongue{opacity:1; transform:scaleY(1);}
+  .hero-badge-float{
+    display:inline-flex; align-items:center; gap:8px; background:rgba(255,255,255,0.14);
+    border:1px solid rgba(255,255,255,0.35); padding:9px 18px; border-radius:999px;
+    font-weight:800; color:#fff; font-size:0.9rem; margin-top:28px;
   }
-  .hero-badge-float{position:absolute; bottom:18px; left:18px; background:var(--paper); padding:9px 16px; border-radius:999px; font-weight:800; color:var(--ink); font-size:0.8rem; border:1px solid var(--linha); z-index:3; display:flex; align-items:center; gap:7px;}
   .status-dot{width:7px;height:7px;border-radius:50%;background:#1E7A3D; animation:pulse 1.8s infinite;}
+  .hero-badge-float .status-dot{background:#4CE07A;}
   @keyframes pulse{0%,100%{opacity:1;}50%{opacity:.35;}}
 
   section{padding:92px 0;}
@@ -321,8 +301,7 @@
   .footer-bottom{display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px; font-size:0.82rem; color:rgba(255,255,255,0.55);}
 
   @media (max-width:860px){
-    .hero-grid, .sobre-grid, .local-grid{grid-template-columns:1fr;}
-    .hero-art{height:300px; order:-1;}
+    .sobre-grid, .local-grid{grid-template-columns:1fr;}
     .servico-row{grid-template-columns:44px 1fr;}
     .servico-arrow{display:none;}
   }
@@ -384,54 +363,29 @@
 </header>
 
 <section class="hero" id="inicio">
+  <div class="sky" aria-hidden="true">
+    <div class="cloud-track track-far">
+      <span class="cloud cloud-far"></span><span class="cloud cloud-far" style="width:56px;height:18px;"></span><span class="cloud cloud-far"></span>
+      <span class="cloud cloud-far"></span><span class="cloud cloud-far" style="width:56px;height:18px;"></span><span class="cloud cloud-far"></span>
+    </div>
+    <div class="cloud-track track-mid">
+      <span class="cloud cloud-mid"></span><span class="cloud cloud-mid" style="width:78px;height:24px;"></span>
+      <span class="cloud cloud-mid"></span><span class="cloud cloud-mid" style="width:78px;height:24px;"></span>
+    </div>
+    <div class="cloud-track track-near">
+      <span class="cloud cloud-near"></span><span class="cloud cloud-near" style="width:100px;height:30px;"></span>
+      <span class="cloud cloud-near"></span><span class="cloud cloud-near" style="width:100px;height:30px;"></span>
+    </div>
+  </div>
   <div class="wrap hero-grid">
-    <div>
-      <div class="rating-line"><span class="stars">★★★★★</span> 4,8 de 466 avaliações no Google</div>
-      <h1>Cuidado veterinário e banho e tosa <em>com carinho de verdade</em></h1>
-      <p class="lead">Em Guaratiba, a Vividog cuida da saúde e da beleza do seu pet com uma equipe atenciosa que trata cada cachorro e gato como parte da família.</p>
-      <div class="hero-ctas">
-        <a href="https://wa.me/5521964861746" class="btn-primary">Agendar pelo WhatsApp <span class="arrow">→</span></a>
-        <a href="#servicos" class="btn-secondary">Ver serviços</a>
-      </div>
+    <div class="rating-line"><span class="stars">★★★★★</span> 4,8 de 466 avaliações no Google</div>
+    <h1>Cuidado veterinário e banho e tosa <em>com carinho de verdade</em></h1>
+    <p class="lead">Em Guaratiba, a Vividog cuida da saúde e da beleza do seu pet com uma equipe atenciosa que trata cada cachorro e gato como parte da família.</p>
+    <div class="hero-ctas">
+      <a href="https://wa.me/5521964861746" class="btn-primary">Agendar pelo WhatsApp <span class="arrow">→</span></a>
+      <a href="#servicos" class="btn-secondary">Ver serviços</a>
     </div>
-    <div class="hero-art">
-      <div class="sky" aria-hidden="true">
-        <div class="cloud-track track-far">
-          <span class="cloud cloud-far"></span><span class="cloud cloud-far" style="width:36px;height:12px;"></span><span class="cloud cloud-far"></span>
-          <span class="cloud cloud-far"></span><span class="cloud cloud-far" style="width:36px;height:12px;"></span><span class="cloud cloud-far"></span>
-        </div>
-        <div class="cloud-track track-mid">
-          <span class="cloud cloud-mid"></span><span class="cloud cloud-mid" style="width:50px;height:16px;"></span>
-          <span class="cloud cloud-mid"></span><span class="cloud cloud-mid" style="width:50px;height:16px;"></span>
-        </div>
-        <div class="cloud-track track-near">
-          <span class="cloud cloud-near"></span><span class="cloud cloud-near" style="width:64px;height:20px;"></span>
-          <span class="cloud cloud-near"></span><span class="cloud cloud-near" style="width:64px;height:20px;"></span>
-        </div>
-      </div>
-      <svg class="dog-scene" viewBox="0 0 480 300" role="img" aria-label="Ilustração de um cachorro correndo, deitando e lambendo a pata">
-        <ellipse class="ground-shadow" cx="235" cy="245" rx="130" ry="16"/>
-        <g class="dog">
-          <path class="tail" d="M175,175 C150,150 145,120 165,105 C172,128 178,150 188,168 Z"/>
-          <path class="leg leg-back" d="M180,190 L172,238 C171,244 176,248 182,248 C188,248 192,244 191,238 L196,190 Z"/>
-          <ellipse cx="245" cy="185" rx="95" ry="52" fill="#C98A4E" opacity="0.35"/>
-          <ellipse cx="240" cy="178" rx="95" ry="52" fill="#E3A76F"/>
-          <path class="leg leg-front" d="M290,192 L283,240 C282,246 287,250 293,250 C299,250 303,246 302,240 L307,192 Z"/>
-          <g class="head-group">
-            <ellipse cx="330" cy="150" rx="20" ry="30" fill="#B97A45" transform="rotate(-25 330 150)"/>
-            <ellipse cx="368" cy="152" rx="20" ry="30" fill="#B97A45" transform="rotate(18 368 152)"/>
-            <circle cx="352" cy="150" r="46" fill="#E3A76F"/>
-            <ellipse cx="386" cy="163" rx="20" ry="15" fill="#EEB47E"/>
-            <circle cx="402" cy="160" r="6" fill="#2B2B2B"/>
-            <circle cx="368" cy="135" r="5" fill="#2B2B2B"/>
-            <path class="tongue" d="M383,172 q6,14 12,2 q-3,10 -12,6 Z"/>
-            <rect x="332" y="118" width="42" height="12" rx="6" fill="#F5222D"/>
-            <circle cx="330" cy="128" r="5" fill="#FBDC1F"/>
-          </g>
-        </g>
-      </svg>
-      <div class="hero-badge-float"><span class="status-dot"></span>Aberto agora · fecha 18h</div>
-    </div>
+    <div class="hero-badge-float"><span class="status-dot"></span>Aberto agora · fecha 18h</div>
   </div>
 </section>
 
